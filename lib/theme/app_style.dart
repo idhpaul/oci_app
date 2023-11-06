@@ -163,4 +163,13 @@ class AppStyle {
     fontFamily: 'Gilroy',
     fontWeight: FontWeight.w500,
   );
+
+  static TextStyle txtGilroyMedium20BlueA700 = TextStyle(
+    color: ColorConstant.blueA700,
+    fontSize: getFontSize(
+      20,
+    ),
+    fontFamily: 'Gilroy',
+    fontWeight: FontWeight.w500,
+  );
 }

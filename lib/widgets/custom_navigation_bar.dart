@@ -14,12 +14,12 @@ class CustomNavigationBar extends StatelessWidget {
   List<NavigationMenuModel> bottomMenuList = [
     NavigationMenuModel(
       icon: Icons.description,
-      title: "Page1",
+      title: "lbl_page1".tr,
       type: NavigationEnum.Page1,
     ),
     NavigationMenuModel(
       icon: Icons.description,
-      title: "Page2",
+      title: "lbl_page2".tr,
       type: NavigationEnum.Page2,
     )
 

@@ -1,11 +1,10 @@
-final Map<String, String> enUs = {
+final Map<String, String> koKr = {
+  'lbl_page1_content_title' : '오늘의 뉴스',
+  'lbl_translate': '번역',
+  "lbl_sort_by": "언어 선택",
+  "lbl_page1": "페이지1",
+  "lbl_page2": "페이지2",
 
-  'lbl_page1_content_title' : 'Today News',
-  'lbl_translate': 'Translate',
-  "lbl_sort_by": "Select Language",
-  "lbl_page1": "page1",
-  "lbl_page2": "page2",
-  
   'msg_network_err': 'Network Error',
   'msg_something_went_wrong': 'Something Went Wrong!',
   "lbl_1k_view": "1k View",

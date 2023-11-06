@@ -1,8 +1,9 @@
 import 'package:oci_app/core/app_export.dart';
-import 'package:oci_app/presentation/video_library_screen/models/video_library_model.dart';
+import 'package:oci_app/presentation/root_1_page/models/root_one_model.dart';
 
-class VideoLibraryController extends GetxController {
-  Rx<VideoLibraryModel> videoLibraryModelObj = VideoLibraryModel().obs;
+
+class RootOneController extends GetxController {
+  Rx<RootOneModel> rootOneModelObj = RootOneModel().obs;
 
   SelectionPopupModel? selectedDropDownValue;
 
@@ -18,12 +19,19 @@ class VideoLibraryController extends GetxController {
 
   onSelected(dynamic value) {
     selectedDropDownValue = value as SelectionPopupModel;
-    videoLibraryModelObj.value.dropdownItemList.value.forEach((element) {
+    rootOneModelObj.value.dropdownItemList.value.forEach((element) {
       element.isSelected = false;
       if (element.id == value.id) {
         element.isSelected = true;
       }
     });
-    videoLibraryModelObj.value.dropdownItemList.refresh();
+    rootOneModelObj.value.dropdownItemList.refresh();
+
+    //send data
+
+    //recv data
+
+    //refrash data
+
   }
 }

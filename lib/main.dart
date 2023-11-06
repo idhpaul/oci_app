@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       translations: AppLocalization(),
       locale: Get.deviceLocale,
       //for setting localization strings
-      fallbackLocale: const Locale('en', 'US'),
+      fallbackLocale: const Locale('ko', 'KR'),
       title: 'oci_app',
       initialBinding: InitialBindings(),
       initialRoute: AppRoutes.rootScreen,

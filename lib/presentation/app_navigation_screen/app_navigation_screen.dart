@@ -205,13 +205,13 @@ class AppNavigationScreen extends GetWidget<AppNavigationController> {
 
   onTapVideoLibrary() {
     Get.toNamed(
-      AppRoutes.videoLibraryScreen,
+      AppRoutes.rootTwoPage,
     );
   }
 
   onTapLikePost() {
     Get.toNamed(
-      AppRoutes.likePostScreen,
+      AppRoutes.rootOnePage,
     );
   }
 }

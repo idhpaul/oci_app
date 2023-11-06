@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:oci_app/data/models/selectionPopupModel/selection_popup_model.dart';
-import 'videolibrary_item_model.dart';
+import 'root_two_item_model.dart';
 
-class VideoLibraryModel {
+class RootTwoModel {
   Rx<List<SelectionPopupModel>> dropdownItemList = Rx([
     SelectionPopupModel(
       id: 1,
@@ -19,6 +19,6 @@ class VideoLibraryModel {
     )
   ]);
 
-  Rx<List<VideolibraryItemModel>> videolibraryItemList =
-      Rx(List.generate(8, (index) => VideolibraryItemModel()));
+  Rx<List<RootTwoItemModel>> videolibraryItemList =
+      Rx(List.generate(8, (index) => RootTwoItemModel()));
 }

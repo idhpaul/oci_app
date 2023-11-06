@@ -1,15 +1,15 @@
-import '../controller/video_library_controller.dart';
-import '../models/videolibrary_item_model.dart';
+import '../controller/root_two_controller.dart';
+import '../models/root_two_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:oci_app/core/app_export.dart';
 
 // ignore: must_be_immutable
-class VideolibraryItemWidget extends StatelessWidget {
-  VideolibraryItemWidget(this.videolibraryItemModelObj);
+class RootTwoItemWidget extends StatelessWidget {
+  RootTwoItemWidget(this.videolibraryItemModelObj);
 
-  VideolibraryItemModel videolibraryItemModelObj;
+  RootTwoItemModel videolibraryItemModelObj;
 
-  var controller = Get.find<VideoLibraryController>();
+  var controller = Get.find<RootTwoController>();
 
   @override
   Widget build(BuildContext context) {

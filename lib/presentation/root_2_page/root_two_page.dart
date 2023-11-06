@@ -1,18 +1,17 @@
 
-import '../video_library_screen/widgets/videolibrary_item_widget.dart';
-import 'controller/video_library_controller.dart';
-import 'models/videolibrary_item_model.dart';
+import 'widgets/root_two_item_widget.dart';
+import 'controller/root_two_controller.dart';
+import 'models/root_two_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:oci_app/core/app_export.dart';
 import 'package:oci_app/widgets/app_bar/appbar_image.dart';
 import 'package:oci_app/widgets/app_bar/custom_app_bar.dart';
 import 'package:oci_app/widgets/custom_drop_down.dart';
 
-class VideoLibraryScreen extends StatelessWidget {
-  VideoLibraryScreen({Key? key}) : super(key: key);
+class RootTwoPage extends StatelessWidget {
+  RootTwoPage({Key? key}) : super(key: key);
 
-  VideoLibraryController controller =
-      Get.put(VideoLibraryController());
+  RootTwoController controller = Get.put(RootTwoController());
   
 
   @override
@@ -23,15 +22,6 @@ class VideoLibraryScreen extends StatelessWidget {
             backgroundColor: ColorConstant.gray50,
             appBar: CustomAppBar(
                 height: getVerticalSize(53),
-                leadingWidth: 40,
-                leading: AppbarImage(
-                    height: getSize(24),
-                    width: getSize(24),
-                    svgPath: ImageConstant.imgArrowleft,
-                    margin: getMargin(left: 16, top: 12, bottom: 16),
-                    onTap: () {
-                      onTapArrowleft1();
-                    }),
                 centerTitle: true,
                 title: Text("lbl_video_library".tr,
                     overflow: TextOverflow.ellipsis,
@@ -90,18 +80,14 @@ class VideoLibraryScreen extends StatelessWidget {
                               itemCount: controller.videoLibraryModelObj.value
                                   .videolibraryItemList.value.length,
                               itemBuilder: (context, index) {
-                                VideolibraryItemModel model = controller
+                                RootTwoItemModel model = controller
                                     .videoLibraryModelObj
                                     .value
                                     .videolibraryItemList
                                     .value[index];
-                                return VideolibraryItemWidget(model);
+                                return RootTwoItemWidget(model);
                               })))
                     ])),
                     ));
-  }
-
-  onTapArrowleft1() {
-    Get.back();
   }
 }
