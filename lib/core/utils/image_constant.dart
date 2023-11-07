@@ -1,4 +1,7 @@
 class ImageConstant {
+  static String imgVideoThumnail =
+      'assets/images/img_video_thumnail.png';
+
   static String imgRectangle17105x1901 =
       'assets/images/img_rectangle17_105x190_1.png';
 

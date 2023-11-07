@@ -13,7 +13,6 @@ class RootTwoPage extends StatelessWidget {
 
   RootTwoController controller = Get.put(RootTwoController());
   
-
   @override
   Widget build(BuildContext context) {
 
@@ -23,18 +22,11 @@ class RootTwoPage extends StatelessWidget {
             appBar: CustomAppBar(
                 height: getVerticalSize(53),
                 centerTitle: true,
-                title: Text("lbl_video_library".tr,
+                title: Text("lbl_page2".tr,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.left,
                     style: AppStyle.txtGilroySemiBold24),
-                actions: [
-                  AppbarImage(
-                      height: getSize(24),
-                      width: getSize(24),
-                      svgPath: ImageConstant.imgOverflowmenu,
-                      margin:
-                          getMargin(left: 16, top: 12, right: 16, bottom: 16))
-                ]),
+                ),
             body: Container(
                 width: double.maxFinite,
                 padding: getPadding(left: 16, top: 23, right: 16, bottom: 23),
@@ -51,20 +43,6 @@ class RootTwoPage extends StatelessWidget {
                                     textAlign: TextAlign.left,
                                     style:
                                         AppStyle.txtGilroySemiBold18Black900)),
-                            CustomDropDown(
-                                width: getHorizontalSize(85),
-                                focusNode: FocusNode(),
-                                icon: Container(
-                                    margin: getMargin(left: 8),
-                                    child: CustomImageView(
-                                        svgPath: ImageConstant
-                                            .imgArrowdownBlueA700)),
-                                hintText: "lbl_sort_by".tr,
-                                items: controller.videoLibraryModelObj.value
-                                    .dropdownItemList.value,
-                                onChanged: (value) {
-                                  controller.onSelected(value);
-                                })
                           ]),
                       Padding(
                           padding: getPadding(top: 18),
@@ -85,7 +63,12 @@ class RootTwoPage extends StatelessWidget {
                                     .value
                                     .videolibraryItemList
                                     .value[index];
-                                return RootTwoItemWidget(model);
+                                return RootTwoItemWidget(
+                                  videolibraryItemModelObj: model,
+                                  onTap: () {
+                                    controller.onTap(model);
+                                  }
+                                );
                               })))
                     ])),
                     ));

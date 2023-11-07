@@ -1,9 +1,16 @@
 import 'package:get/get.dart';
 
 class RootTwoItemModel {
-  Rx<String> newTxt = Rx("New");
 
-  Rx<String> titleTxt = Rx("Big Buck Buny");
+  RootTwoItemModel({
+    this.newTxt,
+    required this.titleTxt,
+    required this.videoId,
+  });
 
-  Rx<String>? id = Rx("");
+  Rx<String>? newTxt = Rx("");
+
+  Rx<String> titleTxt = Rx("");
+
+  String videoId = "";
 }

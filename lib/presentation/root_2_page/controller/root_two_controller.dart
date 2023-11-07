@@ -1,4 +1,5 @@
 import 'package:oci_app/core/app_export.dart';
+import 'package:oci_app/presentation/root_2_page/models/root_two_item_model.dart';
 import 'package:oci_app/presentation/root_2_page/models/root_two_model.dart';
 
 class RootTwoController extends GetxController {
@@ -25,5 +26,12 @@ class RootTwoController extends GetxController {
       }
     });
     videoLibraryModelObj.value.dropdownItemList.refresh();
+  }
+
+  onTap(RootTwoItemModel model){
+    Get.toNamed(
+      AppRoutes.subtitlesScreen,
+      arguments: model,
+    );
   }
 }

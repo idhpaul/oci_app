@@ -26,12 +26,5 @@ class RootOneController extends GetxController {
       }
     });
     rootOneModelObj.value.dropdownItemList.refresh();
-
-    //send data
-
-    //recv data
-
-    //refrash data
-
   }
 }
