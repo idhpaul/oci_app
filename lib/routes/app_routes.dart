@@ -2,7 +2,7 @@ import 'package:oci_app/presentation/root_screen/root_screen.dart';
 import 'package:oci_app/presentation/root_screen/binding/root_screen_binding.dart';
 import 'package:oci_app/presentation/subtitles_screen/subtitles_screen.dart';
 import 'package:oci_app/presentation/subtitles_screen/binding/subtitles_binding.dart';
-import 'package:oci_app/presentation/root_1_page/Root_One_Page.dart';
+import 'package:oci_app/presentation/root_1_page/root_one_page.dart';
 import 'package:oci_app/presentation/root_1_page/binding/root_one_binding.dart';
 import 'package:oci_app/presentation/root_2_page/root_two_page.dart';
 import 'package:oci_app/presentation/root_2_page/binding/root_two_binding.dart';

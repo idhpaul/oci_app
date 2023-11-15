@@ -1,4 +1,5 @@
 import 'package:flutter_html/flutter_html.dart';
+import 'package:oci_app/data/apiClient/api_client.dart';
 import 'package:oci_app/presentation/root_1_page/controller/root_one_controller.dart';
 
 import 'package:flutter/material.dart';
@@ -7,12 +8,13 @@ import 'package:oci_app/widgets/app_bar/appbar_image.dart';
 import 'package:oci_app/widgets/app_bar/custom_app_bar.dart';
 import 'package:oci_app/widgets/custom_button.dart';
 import 'package:oci_app/widgets/custom_drop_down.dart';
-import 'package:oci_app/data/sampleText/sample_text.dart';
+import 'package:oci_app/data/sample/sample_text.dart';
 
 // ignore_for_file: must_be_immutable
 class RootOnePage extends StatelessWidget {
   RootOnePage({Key? key}) : super(key: key);
 
+  ApiClient apiClient = Get.find<ApiClient>();
   RootOneController controller = Get.put(RootOneController());
 
   @override
@@ -120,7 +122,12 @@ class RootOnePage extends StatelessWidget {
                                 margin: getMargin(
                                   left: 5,
                                   right: 5),
-                                onTap: () => print("page 1 translate button clicked!"),
+                                onTap:() {
+                                  apiClient.postTest().then((value){
+                                    print(value.body);
+                                  });
+
+                                },
                               ),
 
                             ],
@@ -210,7 +217,10 @@ class RootOnePage extends StatelessWidget {
                                 margin: getMargin(
                                   left: 5,
                                   right: 5),
-                                onTap: () => print("page 1 translate button clicked!"),
+                                onTap:() async {
+                                  final rep = apiClient.postTest();
+                                  print(rep);
+                                },
                               ),
 
                             ],
@@ -300,7 +310,10 @@ class RootOnePage extends StatelessWidget {
                                 margin: getMargin(
                                   left: 5,
                                   right: 5),
-                                onTap: () => print("page 1 translate button clicked!"),
+                                onTap:() async {
+                                  final rep = apiClient.postTest();
+                                  print(rep);
+                                },
                               ),
 
                             ],

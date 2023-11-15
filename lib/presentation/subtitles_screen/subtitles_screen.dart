@@ -8,9 +8,9 @@ import 'package:oci_app/widgets/app_bar/appbar_image.dart';
 import 'package:oci_app/widgets/app_bar/custom_app_bar.dart';
 import 'package:oci_app/widgets/custom_button.dart';
 
-class SubtitlesScreen extends GetWidget<SubtitlesController> {
+import 'widget/custom_youtubeplayer_caption_widget.dart';
 
-  final item = Get.arguments as RootTwoItemModel;
+class SubtitlesScreen extends GetWidget<SubtitlesController> {
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class SubtitlesScreen extends GetWidget<SubtitlesController> {
                     }),
                 height: getVerticalSize(53),
                 centerTitle: true,
-                title: Text( item.titleTxt.value,
+                title: Text( controller.item.titleTxt.value,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.left,
                     style: AppStyle.txtGilroySemiBold24),
@@ -45,48 +45,12 @@ class SubtitlesScreen extends GetWidget<SubtitlesController> {
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Container(
-                                height: getVerticalSize(250),
-                                width: double.maxFinite,
-                                child: Stack(
-                                    alignment: Alignment.bottomCenter,
-                                    children: [
-                                      YoutubePlayer(
-                                        controller: YoutubePlayerController(
-                                          initialVideoId: YoutubePlayer.convertUrlToId(item.videoId)!,
-                                          flags: YoutubePlayerFlags(
-                                              autoPlay: true,
-                                              mute: true,
-                                          ),
-                                        ),
-                                        showVideoProgressIndicator: true,
-                                      ),
-                                      Align(
-                                          alignment: Alignment.bottomCenter,
-                                          child: Padding(
-                                              padding: getPadding(
-                                                  left: 16,
-                                                  right: 16,
-                                                  bottom: 8),
-                                              child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  children: [
-                                                    CustomButton(
-                                                        height:
-                                                            getVerticalSize(28),
-                                                        text:
-                                                            "msg_lorem_ipsum_dolor"
-                                                                .tr,
-                                                        margin: getMargin(
-                                                            left: 35,
-                                                            right: 35)),
-                                                  ])))
-                                    ])),
-                            
-                            //중간
+
+                            CustomYoutubePlayer(
+                              ytController: controller.ytController,
+                              stController: controller.subtitleController),
+
+                            // video info filed
                             Padding(
                                 padding:
                                     getPadding(left: 16, top: 16, right: 16),
@@ -100,14 +64,14 @@ class SubtitlesScreen extends GetWidget<SubtitlesController> {
                                           width: getHorizontalSize(323),
                                           margin: getMargin(top: 3),
                                           child: Text(
-                                              item.titleTxt.value,
+                                              controller.item.titleTxt.value,
                                               maxLines: null,
                                               textAlign: TextAlign.left,
                                               style: AppStyle
                                                   .txtGilroySemiBold18)),
                                     ])),
                             
-                            // 인터렉션
+                            // reaction bar
                             Padding(
                                 padding:
                                     getPadding(left: 34, top: 17, right: 18),
@@ -227,6 +191,7 @@ class SubtitlesScreen extends GetWidget<SubtitlesController> {
                                                             .txtGilroyMedium14BlueA700))
                                               ]))
                                     ])),
+                            
                             Padding(
                                 padding: getPadding(top: 18),
                                 child: Divider(
