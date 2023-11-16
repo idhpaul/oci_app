@@ -111,6 +111,7 @@ class CustomButton extends StatelessWidget {
 
   _setFontStyle() {
     switch (fontStyle) {
+
       default:
         return TextStyle(
           color: ColorConstant.whiteA700,

@@ -19,9 +19,35 @@ class CustomYoutubePlayer extends StatefulWidget {
 }
 
 class _CustomYoutubePlayerState extends State<CustomYoutubePlayer> {
+  Rx<String> currentCaption = ''.obs;
+
+  @override
+  void initState() {
+    super.initState();
+
+    widget.ytController.addListener(() {
+      captionsSync();
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    widget.ytController.removeListener(() {
+      captionsSync();
+    });
+  }
+
+  void captionsSync() {
+    currentCaption.value = widget.stController.textFromMilliseconds(
+        widget.ytController.value.position.inMilliseconds,
+        widget.stController.subtitles);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Obx(() => Container(
         height: getVerticalSize(250),
         width: double.maxFinite,
         child: Stack(alignment: Alignment.bottomCenter, children: [
@@ -30,43 +56,49 @@ class _CustomYoutubePlayerState extends State<CustomYoutubePlayer> {
             controller: widget.ytController,
             bottomActions: [
               CurrentPosition(),
-              //PlayPauseButton(),
-              //PlaybackSpeedButton(),
               ProgressBar(isExpanded: true),
             ],
             showVideoProgressIndicator: true,
           ),
 
-          // open caption(OC) filed
           Align(
-              alignment: Alignment.bottomCenter,
+            alignment: Alignment.bottomCenter,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: const Color.fromRGBO(0, 0, 0, 0.6),
+                borderRadius: BorderRadius.circular(2.0),
+              ),
               child: Padding(
-                  padding: getPadding(left: 16, right: 16, bottom: 8),
-                  child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        _printTime(),
-                      ])))
-        ]));
-  }
+                padding: const EdgeInsets.all(4),
+                child: Stack(
+                  children: [
+                    Text(
+                      currentCaption.value,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
 
-  Widget _printTime() {
-    var currentCaption = ''.obs;
-
-    widget.ytController.addListener(() {
-      var cc = widget.stController.textFromMilliseconds(
-          widget.ytController.value.position.inMilliseconds,
-          widget.stController.subtitles);
-
-      print(cc);
-      currentCaption = cc.obs;
-    });
-
-    return Obx(() => 
-      Text(currentCaption.value)
-    );
-    
-    
+          // open caption(OC) filed
+          // Align(
+          //     alignment: Alignment.bottomCenter,
+          //     child: Padding(
+          //         padding: getPadding(left: 16, right: 16, bottom: 8),
+          //         child: Column(
+          //             mainAxisSize: MainAxisSize.min,
+          //             mainAxisAlignment: MainAxisAlignment.start,
+          //             children: [
+          //               CustomButton(
+          //                 text: currentCaption.value,
+          //               )
+          //             ])))
+        ])));
   }
 }

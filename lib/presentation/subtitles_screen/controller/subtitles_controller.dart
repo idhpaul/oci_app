@@ -14,6 +14,7 @@ class SubtitlesController extends GetxController {
 
   late YoutubePlayerController ytController;
   late SubtitleController subtitleController;
+
   
   @override
   Future<void> onInit() async {
@@ -26,6 +27,7 @@ class SubtitlesController extends GetxController {
         flags: YoutubePlayerFlags(
           autoPlay: true,
           mute: true,
+          enableCaption: false,
         ));
 
 
