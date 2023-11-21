@@ -6,4 +6,5 @@ class RootOneItemModel {
   Rx<String> titleTxt = Rx("Big Buck Buny");
 
   Rx<String>? id = Rx("");
+
 }

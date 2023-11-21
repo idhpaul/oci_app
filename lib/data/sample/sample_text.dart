@@ -1,5 +1,6 @@
-String html_code_content1 = 
-""" 
+import 'package:oci_app/core/app_export.dart';
+
+Rx<String> html_code_content1 = """ 
 <p>
     <span style="font-family:Arial, Helvetica, sans-serif;">&nbsp; Hwang Min-hyun, a member of now-disbanded project boy groups Wanna One and NU'EST, made his debut as a solo artist Monday, 11 years after he began his musical career.&nbsp;</span>
 </p>
@@ -96,8 +97,8 @@ String html_code_content1 =
 <p>
     출처: 연합뉴스
 </p> 
-""";
-String html_code_content2 = """
+""".obs;
+Rx<String> html_code_content2 = """
 <p>
     <span style="background-color:rgb(255,255,255);color:rgb(60,62,64);font-family:Arial, Helvetica, sans-serif;">&nbsp; Girl group Red Velvet will hold concerts in Seoul on April 1 and 2, its agency SM Entertainment said on Friday.</span>
 </p>
@@ -140,8 +141,8 @@ String html_code_content2 = """
 <p>
     출처: koreajoongangdaily
 </p>
-""";
-String html_code_content3 = """
+""".obs;
+Rx<String> html_code_content3 = """
 <p>
     <span style="color:rgb(0,0,0);font-family:Arial, Helvetica, sans-serif;">&nbsp; K-pop supergroup BTS has won four trophies at the 37th Japan Golden Disc Awards, BigHit Music, the group's agency, said Friday.</span>
 </p>
@@ -172,4 +173,4 @@ String html_code_content3 = """
 <p>
     출처: 코리아타임즈
 </p>
-""";
+""".obs;

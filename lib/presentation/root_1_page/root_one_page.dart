@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_html/flutter_html.dart';
 import 'package:oci_app/data/apiClient/api_client.dart';
 import 'package:oci_app/presentation/root_1_page/controller/root_one_controller.dart';
@@ -10,6 +12,7 @@ import 'package:oci_app/widgets/custom_button.dart';
 import 'package:oci_app/widgets/custom_drop_down.dart';
 import 'package:oci_app/data/sample/sample_text.dart';
 
+
 // ignore_for_file: must_be_immutable
 class RootOnePage extends StatelessWidget {
   RootOnePage({Key? key}) : super(key: key);
@@ -17,9 +20,16 @@ class RootOnePage extends StatelessWidget {
   ApiClient apiClient = Get.find<ApiClient>();
   RootOneController controller = Get.put(RootOneController());
 
+  Map<bool, String> languageMap = {
+    false: "en_US",
+    true: "ko_KR",
+  };
+
+  var languageMapState = false;
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return Obx(() => SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.gray50,
         appBar: CustomAppBar(
@@ -91,7 +101,7 @@ class RootOnePage extends StatelessWidget {
                             bottom: 19
                           ),
                           child: Html(
-                            data: html_code_content1,
+                            data: html_code_content1.value,
                           ),
                         ),
                         Container(
@@ -123,8 +133,21 @@ class RootOnePage extends StatelessWidget {
                                   left: 5,
                                   right: 5),
                                 onTap:() {
-                                  apiClient.postTest().then((value){
-                                    print(value.body);
+                                  apiClient.postTranslate(
+                                    html_code_content1.value, 
+                                    languageMap[languageMapState]!, 
+                                    languageMap[!languageMapState]!).then((value){
+                                    
+                                    languageMapState = !languageMapState;
+
+                                    var jsonResponse = jsonDecode(utf8.decode(value.bodyBytes)) as Map<String, dynamic>;
+                                    var resultLanguageCode = jsonResponse['resultLanguageCode'];
+                                    var resultContent = jsonResponse['resultContent'];
+
+                                    print(resultLanguageCode);
+                                    print(resultContent);
+
+                                    html_code_content1.value = resultContent;
                                   });
 
                                 },
@@ -186,7 +209,7 @@ class RootOnePage extends StatelessWidget {
                             bottom: 19
                           ),
                           child: Html(
-                            data: html_code_content2,
+                            data: html_code_content2.value,
                           ),
                         ),
                         Container(
@@ -218,8 +241,22 @@ class RootOnePage extends StatelessWidget {
                                   left: 5,
                                   right: 5),
                                 onTap:() async {
-                                  final rep = apiClient.postTest();
-                                  print(rep);
+                                  apiClient.postTranslate(
+                                    html_code_content2.value, 
+                                    languageMap[languageMapState]!, 
+                                    languageMap[!languageMapState]!).then((value){
+                                    
+                                    languageMapState = !languageMapState;
+
+                                    var jsonResponse = jsonDecode(utf8.decode(value.bodyBytes)) as Map<String, dynamic>;
+                                    var resultLanguageCode = jsonResponse['resultLanguageCode'];
+                                    var resultContent = jsonResponse['resultContent'];
+
+                                    print(resultLanguageCode);
+                                    print(resultContent);
+
+                                    html_code_content2.value = resultContent;
+                                  });
                                 },
                               ),
 
@@ -279,7 +316,7 @@ class RootOnePage extends StatelessWidget {
                             bottom: 19
                           ),
                           child: Html(
-                            data: html_code_content3,
+                            data: html_code_content3.value,
                           ),
                         ),
                         Container(
@@ -311,8 +348,22 @@ class RootOnePage extends StatelessWidget {
                                   left: 5,
                                   right: 5),
                                 onTap:() async {
-                                  final rep = apiClient.postTest();
-                                  print(rep);
+                                  apiClient.postTranslate(
+                                    html_code_content3.value, 
+                                    languageMap[languageMapState]!, 
+                                    languageMap[!languageMapState]!).then((value){
+                                    
+                                    languageMapState = !languageMapState;
+
+                                    var jsonResponse = jsonDecode(utf8.decode(value.bodyBytes)) as Map<String, dynamic>;
+                                    var resultLanguageCode = jsonResponse['resultLanguageCode'];
+                                    var resultContent = jsonResponse['resultContent'];
+
+                                    print(resultLanguageCode);
+                                    print(resultContent);
+
+                                    html_code_content3.value = resultContent;
+                                  });
                                 },
                               ),
 
@@ -328,6 +379,6 @@ class RootOnePage extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 }
