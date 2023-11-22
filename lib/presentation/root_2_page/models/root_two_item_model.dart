@@ -6,6 +6,7 @@ class RootTwoItemModel {
     this.newTxt,
     required this.titleTxt,
     required this.videoId,
+    required this.videoThumbnail
   });
 
   Rx<String>? newTxt = Rx("");
@@ -13,4 +14,6 @@ class RootTwoItemModel {
   Rx<String> titleTxt = Rx("");
 
   String videoId = "";
+
+  String videoThumbnail = "";
 }

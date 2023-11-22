@@ -1,6 +1,30 @@
 class ImageConstant {
   static String imgVideoThumnail =
       'assets/images/img_video_thumnail.png';
+  
+  static String imgVideoThumnail_1 =
+      'assets/images/img_video_thumnail_1.jpg';
+
+  static String imgVideoThumnail_2 =
+      'assets/images/img_video_thumnail_2.jpg';
+
+  static String imgVideoThumnail_3 =
+      'assets/images/img_video_thumnail_3.jpg';
+
+  static String imgVideoThumnail_4 =
+      'assets/images/img_video_thumnail_4.jpg';
+
+  static String imgVideoThumnail_5 =
+      'assets/images/img_video_thumnail_5.jpg';
+
+  static String imgVideoThumnail_6 =
+      'assets/images/img_video_thumnail_6.jpg';
+
+  static String imgVideoThumnail_7 =
+      'assets/images/img_video_thumnail_7.jpg';
+
+  static String imgVideoThumnail_8 =
+      'assets/images/img_video_thumnail_8.jpg';
 
   static String imgRectangle17105x1901 =
       'assets/images/img_rectangle17_105x190_1.png';

@@ -32,7 +32,7 @@ class RootTwoItemWidget extends StatelessWidget {
             children: [
               CustomImageView(
                 onTap: onTap,
-                imagePath: ImageConstant.imgVideoThumnail,
+                imagePath: videolibraryItemModelObj.videoThumbnail,
                 height: getVerticalSize(
                   105,
                 ),
