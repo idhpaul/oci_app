@@ -3,17 +3,17 @@ import 'package:get/get.dart';
 class RootTwoItemModel {
 
   RootTwoItemModel({
-    this.newTxt,
+    this.videoId,
     required this.titleTxt,
-    required this.videoId,
+    required this.videoUrl,
     required this.videoThumbnail
   });
 
-  Rx<String>? newTxt = Rx("");
+  Rx<String>? videoId = Rx("");
 
   Rx<String> titleTxt = Rx("");
 
-  String videoId = "";
+  String videoUrl = "";
 
   String videoThumbnail = "";
 }

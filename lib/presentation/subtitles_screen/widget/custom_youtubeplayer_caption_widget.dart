@@ -1,32 +1,66 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import 'package:oci_app/core/app_export.dart';
+import 'package:oci_app/data/apiClient/api_client.dart';
+import 'package:oci_app/data/sample/sample_srt.dart';
+import 'package:oci_app/presentation/root_2_page/models/root_two_item_model.dart';
 import 'package:oci_app/widgets/custom_button.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:flutter_subtitle/flutter_subtitle.dart';
 
 class CustomYoutubePlayer extends StatefulWidget {
   CustomYoutubePlayer({
-    required this.ytController,
-    required this.stController,
+    required this.item,
   });
 
-  YoutubePlayerController ytController;
-  SubtitleController stController;
+  RootTwoItemModel item;
 
   @override
   _CustomYoutubePlayerState createState() => _CustomYoutubePlayerState();
 }
 
 class _CustomYoutubePlayerState extends State<CustomYoutubePlayer> {
+
+  ApiClient apiClient = Get.find<ApiClient>();
+  
+  late YoutubePlayerController ytController;
+  late SubtitleController stController;
+
+  String initCaption = default_raw_caption;
   Rx<String> currentCaption = ''.obs;
 
   @override
   void initState() {
     super.initState();
 
-    widget.ytController.addListener(() {
-      captionsSync();
+    ytController = YoutubePlayerController(
+          initialVideoId: YoutubePlayer.convertUrlToId(widget.item.videoUrl)!,
+          flags: YoutubePlayerFlags(
+            autoPlay: true,
+            mute: false,
+            enableCaption: false,
+          ));
+  
+    Future.wait([
+      apiClient.getVideo(widget.item.videoId!.value).then((value){
+        print(utf8.decode(value.bodyBytes));
+        
+        var jsonResponse = jsonDecode(utf8.decode(value.bodyBytes)) as Map<String, dynamic>;
+        String englishCaption = jsonResponse['captions'][0];
+
+        var index = englishCaption.indexOf(':');
+        String caption = englishCaption.substring(index+1);
+
+        initCaption = caption;
+      })
+    ]).then((value) {
+      stController = SubtitleController.string(initCaption, format: SubtitleFormat.srt);
+
+      ytController.addListener(() {
+        captionsSync();
+      });
     });
   }
 
@@ -34,15 +68,15 @@ class _CustomYoutubePlayerState extends State<CustomYoutubePlayer> {
   void dispose() {
     super.dispose();
 
-    widget.ytController.removeListener(() {
+    ytController.removeListener(() {
       captionsSync();
     });
   }
 
   void captionsSync() {
-    currentCaption.value = widget.stController.textFromMilliseconds(
-        widget.ytController.value.position.inMilliseconds,
-        widget.stController.subtitles);
+    currentCaption.value = stController.textFromMilliseconds(
+        ytController.value.position.inMilliseconds,
+        stController.subtitles);
   }
 
   @override
@@ -53,7 +87,7 @@ class _CustomYoutubePlayerState extends State<CustomYoutubePlayer> {
         child: Stack(alignment: Alignment.bottomCenter, children: [
           // video player filed
           YoutubePlayer(
-            controller: widget.ytController,
+            controller: ytController,
             bottomActions: [
               CurrentPosition(),
               ProgressBar(isExpanded: true),

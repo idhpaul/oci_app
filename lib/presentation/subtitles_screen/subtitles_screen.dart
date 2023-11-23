@@ -46,9 +46,7 @@ class SubtitlesScreen extends GetWidget<SubtitlesController> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
 
-                            CustomYoutubePlayer(
-                              ytController: controller.ytController,
-                              stController: controller.subtitleController),
+                            CustomYoutubePlayer(item: controller.item),
 
                             // video info filed
                             Padding(

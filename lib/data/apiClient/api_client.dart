@@ -37,11 +37,21 @@ class ApiClient {
       }
     };
 
-    var url = Uri.parse('http://10.0.2.2:8000/ai/translate');
+    var url = Uri.parse('http://$kHOST_ADDREESS/ai/translate');
     var header = {"Content-Type": "application/json"};
     var body = json.encode(data);
 
     var response = await http.post(url, headers: header, body: body);
+
+
+    return response;
+  }
+
+  Future<http.Response> getVideo(String videoID) async {
+
+    var url = Uri.parse('http://$kHOST_ADDREESS/ai/video/$videoID');
+
+    var response = await http.get(url);
 
 
     return response;
